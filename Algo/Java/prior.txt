@@ -1,0 +1,195 @@
+
+	import java.util.Scanner;
+	public class SJF
+	{
+	    public String s_name;
+
+	    public static String s_sequence="The Sequence is::";
+
+	    public int i_arrival,i_duration;
+
+	    static int i_counter=3,i_time=0,loc=0;
+
+	    static int [] a= new int[4];
+
+	    static SJF [] o_p = new SJF[4];
+
+	    static Scanner input = new Scanner(System.in);
+
+	    public SJF()
+
+	    {
+
+	    };
+
+	    void initialize()
+
+	    {
+
+	        for(int i=0;i<=3;i++)
+
+	         a[i]=0;
+
+	        System.out.print("Enter process Name::");
+
+	        s_name = input.next();  
+
+	        System.out.print("Enter Arrival Time::");
+
+	        i_arrival=input.nextInt();
+
+	        System.out.print("Enter  duration::");
+
+	        i_duration=input.nextInt();
+
+	    }
+
+	     
+
+	    static void output()
+
+	    {
+
+	        System.out.print("Process Name     Arrival Time            Duration\n"
+
+	                        +"------------     ------------            --------\n");
+
+	        for(int i = 0; i <= i_counter; i++)
+
+	                         System.out.print("\n"+o_p[i].s_name+"\t\t\t"+o_p[i].i_arrival+"\t\t\t"+o_p[i].i_duration+"\n");
+
+	    }
+
+	    static int check_arrival()
+
+	    {
+
+	        for(int i=0;i<= i_counter;i++)
+
+	          if((o_p[i].i_duration>0)&&(o_p[i].i_arrival==i_time))
+
+	          {
+
+	               a[i]=1; 
+
+	               loc=i;  
+
+	          }
+
+	        if(a[loc]==0)
+
+	          {
+
+	              for(int i=0;i<= i_counter;i++)
+
+	                 if(a[i]==1)
+
+	                   loc=i;
+
+	               
+
+	          }
+
+	        for(int j=0;j<= i_counter;j++)
+
+	                {
+
+	                    if((o_p[j].i_duration>0)&&(a[j]==1))
+
+	                     {
+
+	                        if(o_p[loc].i_duration>=o_p[j].i_duration)
+
+	                             loc=j;
+
+	                        else loc=loc;
+
+	                     }
+
+	                }
+
+	        return loc;
+
+	    }
+
+	    static void make_string(String process_name)
+
+	    {
+
+	        s_sequence=s_sequence+"  "+process_name;
+
+	    }
+
+	    static void process()
+
+	    {
+
+	        int loc2;
+
+	        loc2=check_arrival();
+
+	        o_p[loc2].i_duration--;
+
+	        if(o_p[loc2].i_duration==0)
+
+	        a[loc2]=0;
+
+	        i_time++;
+
+	        output();
+
+	        make_string(o_p[loc2].s_name);
+
+	        if(o_p[loc2].i_duration==0)
+
+	          o_p[loc2].s_name="NULL";
+
+	           
+
+	    }
+
+	    static void solution()
+
+	    {
+
+	        int value=0;
+
+	        for(int i=0;i<=i_counter;i++)
+
+	            value+=o_p[i].i_duration;
+
+	        for(int i=0;i<value;i++)
+
+	            process();
+
+	    }
+
+	public static void main(String args[])
+
+	{
+
+	     
+
+   for(int i=0;i<=i_counter;i++)
+
+	    {
+
+	        o_p[i] = new SJF();
+
+	    o_p[i].initialize();
+
+	    }
+
+	            output();
+
+	            solution();
+
+	        output();
+
+	        System.out.println(s_sequence);
+
+	        System.exit(0);
+
+	    }
+
+	}

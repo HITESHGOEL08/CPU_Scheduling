@@ -1,0 +1,55 @@
+n = int(input("Enter Total Number of Process:"))
+
+bt = [0] * n
+p = [0] * n
+wt = [0] * n
+tat = [0] * n
+pr = [0] * n
+total = 0
+
+print("\nEnter Burst Time and Priority\n")
+for i in range(n):
+    print("\nP[%d]\n"% (i + 1))
+    bt[i] = int(input("Burst Time:"))
+    pr[i] = int(input("Priority:"))
+    p[i] = i + 1
+
+for i in range(n):
+    pos = i
+    for j in range(i + 1, n):
+        if pr[j] < pr[pos]:
+            pos = j
+
+    temp = pr[i]
+    pr[i] = pr[pos]
+    pr[pos] = temp
+
+    temp = bt[i]
+    bt[i] = bt[pos]
+    bt[pos] = temp
+
+    temp = p[i]
+    p[i] = p[pos]
+    p[pos] = temp
+
+wt[0] = 0
+for i in range(n):
+    wt[i] = 0
+    for j in range(i):
+        wt[i] += bt[j]
+
+    total += wt[i]
+
+avg_wt = total / n
+total = 0
+
+print("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time")
+for i in range(n):
+    tat[i] = bt[i] + wt[i]
+    total += tat[i]
+    print("\nP[%d]\t\t  %d\t\t    %d\t\t\t%d"%( p[i], bt[i], wt[i], tat[i]))
+
+avg_tat = total / n;
+print("\n\nAverage Waiting Time=%d"% avg_wt)
+print("\nAverage Turnaround Time=%d\n"% avg_tat)
+

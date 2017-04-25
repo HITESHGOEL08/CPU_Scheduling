@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DIALOG</class>
+ <widget class="QMainWindow" name="DIALOG">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>173</width>
+    <height>168</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>131</width>
+      <height>98</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="cpp">
+       <property name="text">
+        <string>C++</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="java">
+       <property name="text">
+        <string>JAVA</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="python">
+       <property name="text">
+        <string>PYTHON</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>173</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSELECT_LANGUAGE">
+    <property name="title">
+     <string>SELECT LANGUAGE</string>
+    </property>
+   </widget>
+   <addaction name="menuSELECT_LANGUAGE"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
